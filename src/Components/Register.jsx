@@ -11,6 +11,8 @@ const Register = () => {
     let [visible, setVisivle] = useState(false)
 
 
+    let [errore, seterr] = useState(null)
+
     let onS = (e) => {
         e.preventDefault()
         let form = e.target
@@ -25,6 +27,14 @@ const Register = () => {
                 console.log(logedUser);
                 verify(res.user)
             })
+
+
+        if (password.length < 6) {
+            seterr("password must be 6 charecter")
+        }
+        else {
+            seterr("")
+        }
 
 
     }
@@ -72,6 +82,10 @@ const Register = () => {
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">register</button>
                             </div>
+                            <div>
+                                <p className='text-red-500'>{errore}</p>
+                            </div>
+
                             <div>
                                 <Link to="/Login">new to digital shope</Link>
                             </div>
